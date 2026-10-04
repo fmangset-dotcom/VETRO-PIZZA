@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vetro Pizza — Italiensk restaurant &amp; pizzeria</title>
+<meta name="description" content="Vetro Pizza er en italiensk restaurant og pizzeria. Steinovnsbakt napolitansk pizza, hjemmelaget pasta og ferske råvarer. Bestill bord eller ring for take-away.">
+<meta name="keywords" content="italiensk restaurant, pizza restaurant, pizzeria">
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="Vetro Pizza — Italiensk restaurant &amp; pizzeria">
+<meta property="og:description" content="Steinovnsbakt napolitansk pizza og italiensk mat. Bestill bord eller ring for take-away.">
+<meta property="og:locale" content="nb_NO">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Vetro Pizza",
+  "servesCuisine": ["Italian", "Pizza"],
+  "priceRange": "$$",
+  "telephone": "+47 xxx xx xxx",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Kirkeveien 22, 0264 Oslo",
+    "addressCountry": "NO"
+  },
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "11:00", "closes": "22:00"},
+    {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "12:00", "closes": "22:00"}
+  ],
+  "url": "https://vetropizza.no",
+  "acceptsReservations": "True"
+}
+</script>
+<style>
+  :root{
+    --ivory:#FAF7F0;
+    --cream:#FFFEFB;
+    --sand:#E9DFC7;
+    --olive:#4B5842;
+    --olive-dark:#333E2E;
+    --terracotta:#A6592F;
+    --terracotta-soft:#C97D50;
+    --espresso:#2A2118;
+    --line: rgba(42,33,24,0.10);
+    --maxw: 1200px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    background:var(--ivory);
+    color:var(--espresso);
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', serif;
+    font-weight:440;
+    letter-spacing:-0.012em;
+    color:var(--espresso);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:var(--terracotta);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--terracotta);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:16px 30px;
+    border:1px solid var(--espresso);
+    border-radius:2px;
+    transition:all .35s ease;
+    white-space:nowrap;
+    cursor:pointer;
+    background:none;
+  }
+  .btn-solid{ background:var(--espresso); color:var(--cream); }
+  .btn-solid:hover{background:var(--terracotta); border-color:var(--terracotta);}
+  .btn-outline{ background:transparent; color:var(--espresso); border-color:var(--espresso); }
+  .btn-outline:hover{background:var(--espresso); color:var(--cream);}
+  .btn-outline.on-dark{color:var(--cream); border-color:rgba(255,255,255,0.55);}
+  .btn-outline.on-dark:hover{background:var(--cream); color:var(--espresso);}
+  .btn-solid.on-dark{background:var(--cream); color:var(--espresso); border-color:var(--cream);}
+  .btn-solid.on-dark:hover{background:var(--terracotta); color:var(--cream); border-color:var(--terracotta);}
+
+  /* ---------- photo component (ready-for-real-photo image slots) ---------- */
+  .photo{ position:relative; overflow:hidden; background:var(--sand); }
+  .photo img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform 1.4s cubic-bezier(.2,.7,.2,1); }
+  .photo:hover img{ transform:scale(1.045); }
+  .photo .tag{
+    position:absolute; left:14px; bottom:14px; z-index:3;
+    font-family:'Space Mono',monospace; font-size:9.5px; letter-spacing:0.06em; text-transform:uppercase;
+    color:rgba(255,255,255,0.92); background:rgba(42,33,24,0.42);
+    padding:6px 10px; border-radius:20px; backdrop-filter:blur(3px);
+    pointer-events:none;
+  }
+  .photo.no-overlay .tag{ color:rgba(42,33,24,0.55); background:rgba(255,255,255,0.55); }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:22px 0;
+    transition:background .4s ease, padding .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(250,247,240,0.92);
+    backdrop-filter:blur(10px);
+    padding:14px 0;
+    border-color:var(--line);
+  }
+  header .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .logo{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:500; font-size:22px;
+    color:var(--cream); transition:color .4s ease; letter-spacing:0.01em;
+  }
+  header.scrolled .logo{color:var(--espresso);}
+  nav.links{display:flex; gap:34px; align-items:center;}
+  nav.links a{
+    font-family:'Space Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--cream); transition:color .4s ease, opacity .2s ease; opacity:0.88;
+  }
+  nav.links a:hover{opacity:1; color:var(--terracotta-soft);}
+  header.scrolled nav.links a{color:var(--espresso);}
+  .nav-cta{
+    font-family:'Space Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.06em;
+    padding:10px 18px; border:1px solid rgba(255,255,255,0.6); color:var(--cream); border-radius:2px; transition:all .4s ease;
+  }
+  header.scrolled .nav-cta{color:var(--cream); border-color:var(--espresso); background:var(--espresso);}
+  .nav-cta:hover{background:var(--terracotta); border-color:var(--terracotta); color:var(--cream) !important;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:200; background:none; border:none;}
+  .burger span{width:24px; height:1.5px; background:var(--cream); transition:all .3s ease;}
+  header.scrolled .burger span{background:var(--espresso);}
+  .burger.open span{background:var(--espresso);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end;
+    overflow:hidden; padding-top:120px;
+  }
+  .hero .photo{ position:absolute; inset:0; z-index:0; }
+  .hero .photo::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(20,15,10,0.42) 0%, rgba(20,15,10,0.28) 38%, rgba(20,15,10,0.72) 100%);
+  }
+  .hero-badge{
+    position:absolute; top:130px; right:6%; width:112px; height:112px;
+    border:1px solid rgba(255,255,255,0.4); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; animation: spin 26s linear infinite; z-index:2;
+  }
+  @media (prefers-reduced-motion: reduce){.hero-badge{animation:none;}}
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .hero-badge svg{width:100%; height:100%;}
+  .hero-inner{ position:relative; z-index:2; padding-bottom:88px; }
+  .hero-kicker{
+    font-family:'Space Mono', monospace; color:var(--sand); font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    margin-bottom:24px; display:flex; align-items:center; gap:12px;
+  }
+  .hero-kicker::before{content:"";width:34px;height:1px;background:var(--sand);}
+  .hero h1{ color:var(--cream); font-size:clamp(54px, 9.5vw, 128px); line-height:0.94; font-weight:400; letter-spacing:-0.015em; }
+  .hero h1 em{ font-style:italic; font-weight:300; color:var(--sand); }
+  .hero-sub{ max-width:480px; color:rgba(255,255,255,0.86); font-size:16.5px; margin-top:26px; font-weight:300; }
+  .hero-actions{ display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; }
+  .hero-foot{
+    margin-top:64px; padding-top:26px; border-top:1px solid rgba(255,255,255,0.2);
+    display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap;
+  }
+  .hero-foot .item .eyebrow{color:var(--sand);}
+  .hero-foot .item .eyebrow::before{background:var(--sand);}
+  .hero-foot .item p{color:var(--cream); font-family:'Fraunces',serif; font-size:18px; margin-top:8px;}
+
+  /* ---------- SECTION shared ---------- */
+  section{padding:128px 0;}
+  .section-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-bottom:60px; flex-wrap:wrap; }
+  .section-head h2{ font-size:clamp(32px,4vw,50px); font-weight:420; max-width:640px; margin-top:14px; }
+  .section-head .sub{max-width:340px; font-size:14.5px; color:#736a5a; padding-bottom:6px;}
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:none;}
+
+  /* ---------- INTRO ---------- */
+  .intro{background:var(--cream);}
+  .intro-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:80px; align-items:start;}
+  .intro-lede{ font-family:'Fraunces',serif; font-style:italic; font-weight:400; font-size:clamp(23px,2.4vw,30px); line-height:1.44; color:var(--espresso); }
+  .intro-body p{color:#5b5041; font-size:15.5px; margin-bottom:18px;}
+  .intro-stats{display:flex; gap:40px; margin-top:34px; flex-wrap:wrap;}
+  .intro-stats .stat .num{font-family:'Fraunces',serif; font-size:32px; color:var(--terracotta);}
+  .intro-stats .stat .lbl{font-family:'Space Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.08em; color:#93876f; margin-top:4px;}
+
+  /* ---------- SIGNATURE DISHES (asymmetric) ---------- */
+  .signature{background:var(--ivory);}
+  .sig-bento{
+    display:grid;
+    grid-template-columns: 1.35fr 1fr 1fr;
+    grid-template-rows: 340px 220px;
+    gap:14px;
+  }
+  .sig-card{
+    position:relative; border-radius:2px; overflow:hidden;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    color:var(--cream);
+  }
+  .sig-card .photo{position:absolute; inset:0; z-index:0;}
+  .sig-card .photo::after{content:"";position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,15,10,0.02) 40%, rgba(20,15,10,0.72) 100%);}
+  .sig-card .sig-body{position:relative; z-index:2; padding:22px;}
+  .sig-card .num{font-family:'Space Mono',monospace; font-size:11px; color:var(--sand); opacity:0.9;}
+  .sig-card h4{font-size:22px; font-weight:460; margin-top:8px;}
+  .sig-card .desc{font-size:12.5px; color:rgba(255,255,255,0.78); margin-top:6px; max-width:280px; line-height:1.5;}
+  .sig-card .price{font-family:'Space Mono',monospace; font-size:13px; margin-top:14px; color:var(--sand);}
+  .sig-card.tall{grid-row: 1 / 3;}
+  @media (max-width:900px){
+    .sig-bento{grid-template-columns:1fr 1fr; grid-template-rows:260px 200px 200px;}
+    .sig-card.tall{grid-row:1/2; grid-column:1/3; height:280px;}
+  }
+  @media (max-width:560px){
+    .sig-bento{grid-template-columns:1fr; grid-template-rows:none;}
+    .sig-card, .sig-card.tall{grid-column:auto; grid-row:auto; height:280px;}
+  }
+
+  /* ---------- PHILOSOPHY ---------- */
+  .philosophy{ background:var(--cream); }
+  .philosophy-grid{display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center;}
+  .philosophy .photo{aspect-ratio:4/5; border-radius:2px;}
+  .philosophy h2{ font-size:clamp(30px,3.6vw,44px); line-height:1.22; font-weight:420; }
+  .philosophy h2 em{color:var(--terracotta); font-style:italic; font-weight:400;}
+  .philosophy p{color:#5b5041; font-size:15.5px; margin-top:24px; max-width:440px;}
+  .philosophy .eyebrow{margin-bottom:6px;}
+
+  /* ---------- MENU ---------- */
+  .menu-section{background:var(--ivory);}
+  .tabs{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom:50px; border-bottom:1px solid var(--line); padding-bottom:26px; }
+  .tab-btn{
+    font-family:'Space Mono',monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.04em;
+    padding:10px 16px 10px 12px; border:1px solid var(--line); border-radius:20px; background:var(--cream);
+    color:#5b5041; cursor:pointer; transition:all .25s ease; display:flex; align-items:center; gap:8px;
+  }
+  .tab-btn svg{width:14px; height:14px; opacity:0.7;}
+  .tab-btn:hover{border-color:var(--espresso); color:var(--espresso);}
+  .tab-btn.active{background:var(--espresso); color:var(--cream); border-color:var(--espresso);}
+  .tab-btn.active svg{opacity:1;}
+  .menu-panel-head{display:flex; align-items:baseline; gap:16px; margin-bottom:8px;}
+  .menu-panel-head h3{font-size:28px; font-weight:450;}
+  .menu-note{font-size:13px; color:#93876f; margin-bottom:34px; max-width:560px;}
+  .menu-list{border-top:1px solid var(--line);}
+  .menu-row{ display:grid; grid-template-columns:52px 1fr auto; gap:22px; align-items:start; padding:22px 0; border-bottom:1px solid var(--line); }
+  .menu-row .idx{font-family:'Space Mono',monospace; font-size:12px; color:var(--terracotta); padding-top:4px;}
+  .menu-row .name{font-family:'Fraunces',serif; font-size:19px; font-weight:450;}
+  .menu-row .name .tags{font-family:'Space Mono',monospace; font-size:10px; color:#a89d87; margin-left:8px;}
+  .menu-row .ingr{font-size:13.5px; color:#847a68; margin-top:6px; max-width:520px; line-height:1.55;}
+  .menu-row .price{ font-family:'Space Mono',monospace; font-size:14px; text-align:right; white-space:nowrap; padding-top:4px; }
+  .menu-row .price .p-multi{display:flex; gap:14px;}
+  .menu-row .price .p-multi span{display:block; min-width:38px; text-align:right;}
+  .price-head{ display:grid; grid-template-columns:52px 1fr auto; gap:22px; padding-bottom:10px; }
+  .price-head .p-multi{display:flex; gap:14px;}
+  .price-head .p-multi span{min-width:38px; text-align:right; font-family:'Space Mono',monospace; font-size:9px; text-transform:uppercase; color:#a89d87; letter-spacing:0.04em;}
+  .allergen-note{margin-top:40px; font-size:11.5px; color:#a89d87; line-height:1.7; font-family:'Space Mono',monospace;}
+
+  /* ---------- KITCHEN (editorial strip) ---------- */
+  .kitchen{background:var(--cream);}
+  .kitchen-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:16px; }
+  .k-block{ aspect-ratio:3/4; position:relative; overflow:hidden; border-radius:2px; }
+  .k-block .photo{position:absolute; inset:0;}
+  .k-block .photo::after{content:"";position:absolute; inset:0; background:linear-gradient(180deg, transparent 45%, rgba(20,15,10,0.55) 100%);}
+  .k-block .label{
+    position:absolute; left:18px; bottom:16px; z-index:3;
+    font-family:'Space Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--cream);
+  }
+
+  /* ---------- ATMOSPHERE gallery (asymmetric) ---------- */
+  .atmosphere{background:var(--ivory);}
+  .atmo-grid{ display:grid; grid-template-columns:1.4fr 1fr; grid-template-rows:220px 220px; gap:12px; margin-top:16px; }
+  .atmo-grid .photo:nth-child(1){grid-row:1/3; border-radius:2px;}
+  .atmo-grid .photo:nth-child(2){border-radius:2px;}
+  .atmo-grid .photo:nth-child(3){border-radius:2px;}
+  .atmo-wide{ margin-top:12px; }
+  .atmo-wide .photo{ aspect-ratio:21/8; border-radius:2px; }
+  @media (max-width:900px){
+    .atmo-grid{grid-template-columns:1fr 1fr; grid-template-rows:180px 180px;}
+  }
+  @media (max-width:560px){
+    .atmo-grid{grid-template-columns:1fr; grid-template-rows:none;}
+    .atmo-grid .photo{height:220px; grid-row:auto !important;}
+  }
+
+  /* ---------- BOOKING ---------- */
+  .booking{background:var(--espresso); color:var(--cream); position:relative; overflow:hidden;}
+  .booking .photo{position:absolute; inset:0; opacity:0.22;}
+  .booking .wrap{position:relative; z-index:2;}
+  .booking-head{max-width:600px; margin-bottom:56px;}
+  .booking h2{color:var(--cream); font-size:clamp(38px,5.6vw,68px); font-weight:420; line-height:1.02;}
+  .booking h2 em{color:var(--terracotta-soft); font-style:italic; font-weight:400;}
+  .booking p.lede{color:rgba(255,255,255,0.72); margin-top:20px; font-size:16px; max-width:460px;}
+  .booking-panel{ display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start; }
+  .res-form{ display:grid; grid-template-columns:1fr 1fr; gap:16px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.14); padding:28px; border-radius:2px; }
+  .res-form .field{display:flex; flex-direction:column; gap:8px;}
+  .res-form .field.full{grid-column:1/-1;}
+  .res-form label{font-family:'Space Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--sand);}
+  .res-form input, .res-form select, .res-form textarea{
+    background:transparent; border:none; border-bottom:1px solid rgba(255,255,255,0.3); color:var(--cream);
+    font-family:'Inter',sans-serif; font-size:14.5px; padding:8px 2px; outline:none; transition:border-color .3s ease;
+  }
+  .res-form input::placeholder, .res-form textarea::placeholder{color:rgba(255,255,255,0.35);}
+  .res-form input:focus, .res-form select:focus, .res-form textarea:focus{border-color:var(--terracotta-soft);}
+  .res-form select option{color:var(--espresso);}
+  .res-form .actions{grid-column:1/-1; display:flex; gap:14px; align-items:center; margin-top:6px; flex-wrap:wrap;}
+  .res-note{font-size:12px; color:rgba(255,255,255,0.5); grid-column:1/-1; margin-top:4px;}
+  .res-confirm{ grid-column:1/-1; font-size:13.5px; color:var(--sand); display:none; padding-top:8px; }
+  .res-confirm.show{display:block;}
+  .info-rows .row{ display:flex; justify-content:space-between; padding:16px 0; border-top:1px solid rgba(255,255,255,0.14); font-size:14px; }
+  .info-rows .row:last-child{border-bottom:1px solid rgba(255,255,255,0.14);}
+  .info-rows .row .k{font-family:'Space Mono',monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--sand);}
+  .info-rows .row .v{text-align:right;}
+  .visit-actions{display:flex; gap:14px; margin-top:26px; flex-wrap:wrap;}
+  .map-frame{ border:1px solid rgba(255,255,255,0.16); border-radius:2px; overflow:hidden; min-height:280px; margin-top:26px; }
+  .map-frame iframe{width:100%; height:100%; min-height:280px; border:0; filter:grayscale(0.4) contrast(1.05);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--olive-dark); color:var(--cream); padding:60px 0 100px;}
+  .footer-top{display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.15);}
+  .footer-logo{font-family:'Fraunces',serif; font-style:italic; font-size:28px;}
+  .footer-links{display:flex; gap:56px; flex-wrap:wrap;}
+  .footer-links .col .eyebrow{color:var(--sand); margin-bottom:14px;}
+  .footer-links .col a, .footer-links .col p{display:block; font-size:13.5px; color:rgba(255,255,255,0.75); margin-bottom:8px;}
+  .footer-links .col a:hover{color:var(--sand);}
+  .footer-bottom{display:flex; justify-content:space-between; padding-top:24px; font-size:12px; color:rgba(255,255,255,0.5); flex-wrap:wrap; gap:10px;}
+
+  /* ---------- sticky mobile booking bar ---------- */
+  .mobile-bar{
+    display:none; position:fixed; bottom:0; left:0; right:0; z-index:120;
+    background:var(--espresso); padding:12px 16px; gap:10px;
+    box-shadow:0 -6px 22px rgba(0,0,0,0.18);
+  }
+  .mobile-bar a{flex:1; text-align:center; padding:13px; font-family:'Space Mono',monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:0.04em; border-radius:2px;}
+  .mobile-bar a.primary{background:var(--terracotta); color:var(--cream);}
+  .mobile-bar a.secondary{border:1px solid rgba(255,255,255,0.3); color:var(--cream);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    nav.links{display:none;}
+    .nav-cta{display:none;}
+    .burger{display:flex;}
+    .intro-grid, .philosophy-grid{grid-template-columns:1fr; gap:36px;}
+    .philosophy .photo{order:-1; aspect-ratio:16/10;}
+    .booking-panel{grid-template-columns:1fr; gap:40px;}
+    .kitchen-grid{grid-template-columns:repeat(2,1fr);}
+    .menu-row{grid-template-columns:34px 1fr; row-gap:8px;}
+    .menu-row .price{grid-column:1/-1; text-align:left; padding-left:34px;}
+    .price-head{grid-template-columns:34px 1fr;}
+    .price-head .p-multi{grid-column:1/-1; padding-left:34px;}
+    section{padding:84px 0;}
+    .hero{padding-top:100px;}
+    .hero-badge{display:none;}
+    .hero-foot{margin-top:46px;}
+    .mobile-bar{display:flex;}
+    footer{padding-bottom:110px;}
+    .res-form{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .kitchen-grid{grid-template-columns:1fr 1fr;}
+    .wrap{padding:0 20px;}
+  }
+
+  /* Mobile nav drawer */
+  .mnav{
+    position:fixed; inset:0; background:var(--ivory); z-index:150;
+    display:flex; flex-direction:column; justify-content:center; align-items:flex-start; gap:24px;
+    padding:0 32px; transform:translateY(-100%); transition:transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .mnav.open{transform:translateY(0);}
+  .mnav a{font-family:'Fraunces',serif; font-size:30px; color:var(--espresso);}
+  .mnav .tel{font-family:'Space Mono',monospace; font-size:13px; color:var(--terracotta); margin-top:18px;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <a href="#top" class="logo">Vetro</a>
+    <nav class="links">
+      <a href="#meny">Meny</a>
+      <a href="#historie">Om oss</a>
+      <a href="#atmosfare">Atmosfære</a>
+      <a href="#bestill">Bestill bord</a>
+    </nav>
+    <a href="#bestill" class="nav-cta">Bestill bord</a>
+    <button class="burger" id="burgerBtn" aria-label="Åpne meny"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="mnav" id="mnav">
+  <a href="#meny">Meny</a>
+  <a href="#historie">Om oss</a>
+  <a href="#atmosfare">Atmosfære</a>
+  <a href="#bestill">Bestill bord</a>
+  <a href="tel:+47xxxxxxxxx" class="tel">+47 xxx xx xxx — ring oss</a>
+</div>
+
+<div id="top"></div>
+<section class="hero">
+  <figure class="photo no-hover" id="heroPhoto">
+    <img alt="Nybakt napolitansk pizza rett fra steinovnen hos Vetro Pizza" loading="eager">
+  </figure>
+  <div class="hero-badge">
+    <svg viewBox="0 0 120 120"><path id="circlePath" d="M 60,60 m -48,0 a 48,48 0 1,1 96,0 a 48,48 0 1,1 -96,0" fill="none"/>
+      <text font-family="Space Mono" font-size="9.2" letter-spacing="2" fill="#FCFAF4"><textPath href="#circlePath">ALLTID FERSK · VETRO · ALLTID FERSK · VETRO ·</textPath></text>
+    </svg>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-kicker">Napolitansk håndverk · Demo-nettside</div>
+    <h1>Vetro<br><em>Pizza.</em></h1>
+    <p class="hero-sub">Steinovnsbakt pizza, hjemmelaget pasta og et kjøkken som holder det enkelt — gode råvarer, ærlig håndverk, alltid fersk.</p>
+    <div class="hero-actions">
+      <a href="#bestill" class="btn btn-solid on-dark">Bestill bord</a>
+      <a href="#meny" class="btn btn-outline on-dark">Se meny</a>
+    </div>
+    <div class="hero-foot">
+      <div class="item">
+        <div class="eyebrow">Åpningstider</div>
+        <p>Man–Fre 11–22 · Lør–Søn 12–22</p>
+      </div>
+      <div class="item">
+        <div class="eyebrow">Adresse</div>
+        <p>Kirkeveien 22, 0264 Oslo</p>
+      </div>
+      <div class="item">
+        <div class="eyebrow">Ring oss</div>
+        <p><a href="tel:+47xxxxxxxxx">+47 xxx xx xxx</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="historie">
+  <div class="wrap">
+    <div class="reveal intro-grid">
+      <div>
+        <div class="eyebrow">Om Vetro Pizza</div>
+        <p class="intro-lede">Et nabolagskjøkken tro mot det enkle: god deig, ferske råvarer og en meny bygget over tid.</p>
+      </div>
+      <div class="intro-body">
+        <p>Vetro Pizza er en italiensk restaurant og pizzeria der klassikere lages ved siden av egne oppfinnelser — fra en tradisjonell Margherita til husets Vetro Parma med parmaskinke og aceto balsamico. Ovnen går varm hele dagen, og menyen er satt sammen for å dekke alt fra en rask lunsj til middag med hele familien.</p>
+        <p>Vi holder oss til det vi kan best: steinovnsbakt pizza i tre størrelser, hjemmelaget pasta og lasagne, friske salater og en barnemeny som gjør at ingen går sultne fra bordet.</p>
+        <div class="intro-stats">
+          <div class="stat"><div class="num">52</div><div class="lbl">Retter på menyen</div></div>
+          <div class="stat"><div class="num">3</div><div class="lbl">Pizzastørrelser</div></div>
+          <div class="stat"><div class="num">7/7</div><div class="lbl">Åpent alle dager</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="signature">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Husets favoritter</div>
+        <h2>Fem retter å starte med</h2>
+      </div>
+      <p class="sub">Et lite utvalg fra menyen — se hele listen med alle 52 retter lenger ned.</p>
+    </div>
+    <div class="sig-bento reveal" id="sigBento"></div>
+  </div>
+</section>
+
+<section class="philosophy">
+  <div class="wrap philosophy-grid">
+    <figure class="photo reveal" id="philoPhoto">
+      <img alt="Kokk former pizzadeig for hånd på kjøkkenet hos Vetro Pizza" loading="lazy">
+    </figure>
+    <div class="reveal">
+      <div class="eyebrow">Filosofien vår</div>
+      <h2>Ikke mer enn nødvendig — <em>og aldri mindre enn godt.</em></h2>
+      <p>Vi tror ikke en italiensk restaurant trenger å være komplisert for å være god. Deigen får den tiden den trenger, råvarene velges med omhu, og retter som Burrata La Rosa eller Lasagne al Forno lages på samme måte hver eneste dag. Enkelt gjort riktig — det er hele idéen.</p>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="meny">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Full meny</div>
+        <h2>52 retter, én filosofi</h2>
+      </div>
+      <p class="sub">Alle retter er nummerert som på bestillingslappen — bruk gjerne nummeret når du ringer inn bestillingen.</p>
+    </div>
+    <div class="tabs reveal" id="tabBar"></div>
+    <div class="menu-panel-head"><h3 id="menuTitle"></h3></div>
+    <div class="menu-note" id="menuNote"></div>
+    <div class="menu-list" id="menuList"></div>
+    <p class="allergen-note">Allergener: 1 Sennep · 2 Hvete · 3 Bløtdyr · 4 Soya · 5 Skalldyr · 6 Svoveldioksid · 7 Peanøtter · 8 Melk · 9 Selleri · 10 Sesamfrø · 11 Lupin · 12 Egg · 13 Fisk · 14 Nøtter. Spør oss gjerne ved allergier — tallene i menyen viser til listen over.</p>
+  </div>
+</section>
+
+<section class="kitchen">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Fra kjøkkenet</div>
+        <h2>Håndverket bak menyen</h2>
+      </div>
+      <p class="sub">Fire ting vi bruker litt ekstra tid på.</p>
+    </div>
+    <div class="kitchen-grid reveal" id="kitchenGrid"></div>
+  </div>
+</section>
+
+<section class="atmosphere" id="atmosfare">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Atmosfæren</div>
+        <h2>Et rom å sette seg ned i</h2>
+      </div>
+      <p class="sub">Et lite innblikk i lokalet og maten på vei ut av ovnen.</p>
+    </div>
+    <div class="atmo-grid reveal" id="atmoGrid"></div>
+    <div class="atmo-wide reveal" id="atmoWide"></div>
+  </div>
+</section>
+
+<section class="booking" id="bestill">
+  <figure class="photo" id="bookingPhoto">
+    <img alt="" loading="lazy">
+  </figure>
+  <div class="wrap">
+    <div class="booking-head reveal">
+      <div class="eyebrow" style="color:var(--sand)">Bestill bord</div>
+      <h2>Et bord <em>venter.</em></h2>
+      <p class="lede">Book bord hos Vetro Pizza — vi tar gjerne imot deg, enten det er en rask lunsj eller middag med hele familien.</p>
+    </div>
+    <div class="booking-panel">
+      <form class="res-form reveal" id="resForm">
+        <div class="field">
+          <label for="rName">Navn</label>
+          <input type="text" id="rName" placeholder="Ditt navn" required>
+        </div>
+        <div class="field">
+          <label for="rPhone">Telefon</label>
+          <input type="tel" id="rPhone" placeholder="For bekreftelse" required>
+        </div>
+        <div class="field">
+          <label for="rDate">Dato</label>
+          <input type="date" id="rDate" required>
+        </div>
+        <div class="field">
+          <label for="rTime">Tidspunkt</label>
+          <input type="time" id="rTime" required>
+        </div>
+        <div class="field full">
+          <label for="rGuests">Antall gjester</label>
+          <select id="rGuests">
+            <option>2 gjester</option>
+            <option>3 gjester</option>
+            <option>4 gjester</option>
+            <option>5 gjester</option>
+            <option>6+ gjester</option>
+          </select>
+        </div>
+        <div class="actions">
+          <button type="submit" class="btn btn-solid on-dark">Bestill bord</button>
+          <a href="tel:+47xxxxxxxxx" class="btn btn-outline on-dark">Ring oss</a>
+        </div>
+        <p class="res-note">Sender en bestillingsforespørsel på SMS til +47 xxx xx xxx — vi bekrefter bordet på telefon.</p>
+        <p class="res-confirm" id="resConfirm">Forespørselen er klar i meldings-appen din. Send den, så ringer vi tilbake for å bekrefte bordet.</p>
+      </form>
+      <div class="reveal">
+        <div class="info-rows">
+          <div class="row"><div class="k">Adresse</div><div class="v">Kirkeveien 22, 0264 Oslo</div></div>
+          <div class="row"><div class="k">Telefon</div><div class="v">+47 xxx xx xxx</div></div>
+          <div class="row"><div class="k">Man–Fre</div><div class="v">11.00 – 22.00</div></div>
+          <div class="row"><div class="k">Lør–Søn</div><div class="v">12.00 – 22.00</div></div>
+        </div>
+        <div class="visit-actions">
+          <a href="https://www.google.com/maps/search/?api=1&query=Kirkeveien+22%2C+0264+Oslo" target="_blank" rel="noopener" class="btn btn-outline on-dark">Åpne i Google Maps</a>
+        </div>
+        <div class="map-frame">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Kart til Vetro Pizza"
+            src="https://www.google.com/maps?q=Kirkeveien+22,+0264+Oslo&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Vetro</div>
+        <p style="color:rgba(255,255,255,0.6); font-size:13px; margin-top:10px; max-width:260px;">Alltid fersk pizza.</p>
+      </div>
+      <div class="footer-links">
+        <div class="col">
+          <div class="eyebrow">Kontakt</div>
+          <a href="tel:+47xxxxxxxxx">+47 xxx xx xxx</a>
+          <p>Kirkeveien 22, 0264 Oslo</p>
+        </div>
+        <div class="col">
+          <div class="eyebrow">Åpningstider</div>
+          <p>Man–Fre 11–22</p>
+          <p>Lør–Søn 12–22</p>
+        </div>
+        <div class="col">
+          <div class="eyebrow">Utforsk</div>
+          <a href="#meny">Meny</a>
+          <a href="#historie">Om oss</a>
+          <a href="#bestill">Bestill bord</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Vetro Pizza</span>
+      <span>vetropizza.no</span>
+    </div>
+  </div>
+</footer>
+
+<div class="mobile-bar">
+  <a href="#bestill" class="primary">Bestill bord</a>
+  <a href="tel:+47xxxxxxxxx" class="secondary">Ring oss</a>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ================= header scroll state ================= */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 40), {passive:true});
+
+/* ================= mobile nav ================= */
+const burger = document.getElementById('burgerBtn');
+const mnav = document.getElementById('mnav');
+burger.addEventListener('click', () => { mnav.classList.toggle('open'); burger.classList.toggle('open'); });
+mnav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mnav.classList.remove('open'); burger.classList.remove('open'); }));
+
+/* ================= reveal on scroll ================= */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/*
+  =====================================================================
+  BILDER: Bruker frie stockfoto (Unsplash/Pexels-lisens, fri kommersiell
+  bruk) som midlertidige bilder inntil restauranten har egne foto av
+  akkurat sine retter og sitt lokale. Bytt bare ut url-verdien under
+  med restaurantens egne bilder når de er klare — resten av oppsettet
+  (størrelse/beskjæring/alt-tekst) trenger ingen endring.
+  =====================================================================
+*/
+const STOCK = {
+  hero:      'https://images.unsplash.com/photo-1536622308015-0740925b8221?fm=jpg&q=80&w=2200&auto=format&fit=crop',
+  margherita:'https://images.unsplash.com/photo-1774806189017-f4c1f2760ad2?fm=jpg&q=80&w=1600&auto=format&fit=crop',
+  burrata:   'https://images.pexels.com/photos/33581478/pexels-photo-33581478/free-photo-of-delicious-burrata-cheese-salad-in-italian-setting.jpeg?w=1600',
+  lasagne:   'https://images.unsplash.com/photo-1633436374961-09b92742047b?fm=jpg&q=80&w=1600&auto=format&fit=crop',
+  tiramisu:  'https://images.unsplash.com/photo-1530449791875-f2991d9be1a0?fm=jpg&q=80&w=1600&auto=format&fit=crop',
+  dough:     'https://images.unsplash.com/photo-1532460734809-e7f8475ca917?fm=jpg&q=80&w=1600&auto=format&fit=crop',
+  interior:  'https://images.unsplash.com/photo-1667388969250-1c7220bf3f37?fm=jpg&q=80&w=2000&auto=format&fit=crop',
+};
+function setPhoto(el, src, tag){
+  const img = el.querySelector('img');
+  img.src = src;
+  if(tag){
+    const t = document.createElement('span');
+    t.className = 'tag';
+    t.textContent = tag;
+    el.appendChild(t);
+  }
+}
+
+/* Hero + philosophy + booking background photos */
+setPhoto(document.getElementById('heroPhoto'), STOCK.hero);
+setPhoto(document.getElementById('philoPhoto'), STOCK.dough);
+setPhoto(document.getElementById('bookingPhoto'), STOCK.interior);
+
+/* ================= signature dishes (asymmetric bento) ================= */
+const signature = [
+  {num:'01', name:'Margherita', desc:'Tomatsaus, ost og basilikum', price:'fra 69,-', tall:true, photo:STOCK.margherita},
+  {num:'27', name:'Burrata La Rosa', desc:'Burrata, cherrytomater, oliven, ruccula og brød', price:'199,-', photo:STOCK.burrata},
+  {num:'15', name:'Pizza Burrata', desc:'Tomatsaus, ost, ruccula, burrata og aceto balsamico crema', price:'fra 199,-', photo:STOCK.hero},
+  {num:'32', name:'Lasagne al Forno', desc:'Servert med 4 stk. brød', price:'199,-', photo:STOCK.lasagne},
+  {num:'51', name:'Tiramisu', desc:'Husets klassiske dessert', price:'120,-', photo:STOCK.tiramisu},
+];
+document.getElementById('sigBento').innerHTML = signature.map(s => `
+  <div class="sig-card ${s.tall?'tall':''}">
+    <figure class="photo"><img alt="${s.name} hos Vetro Pizza" loading="lazy" src="${s.photo}"></figure>
+    <div class="sig-body">
+      <div class="num">${s.num} /</div>
+      <h4>${s.name}</h4>
+      <div class="desc">${s.desc}</div>
+      <div class="price">${s.price}</div>
+    </div>
+  </div>
+`).join('');
+
+/* ================= kitchen strip ================= */
+const kitchen = [
+  {label:'Steinovnsbakt', photo:STOCK.hero},
+  {label:'Ferske råvarer', photo:STOCK.burrata},
+  {label:'Hjemmelaget pasta', photo:STOCK.lasagne},
+  {label:'Bakt hver dag', photo:STOCK.dough},
+];
+document.getElementById('kitchenGrid').innerHTML = kitchen.map(k => `
+  <div class="k-block">
+    <figure class="photo"><img alt="${k.label} hos Vetro Pizza" loading="lazy" src="${k.photo}"></figure>
+    <span class="label">${k.label}</span>
+  </div>
+`).join('');
+
+/* ================= atmosphere gallery ================= */
+const atmo = [STOCK.interior, STOCK.dough, STOCK.margherita];
+document.getElementById('atmoGrid').innerHTML = atmo.map(url => `
+  <figure class="photo"><img alt="Atmosfære hos Vetro Pizza" loading="lazy" src="${url}"></figure>
+`).join('');
+document.getElementById('atmoWide').innerHTML = `<figure class="photo"><img alt="Mat servert hos Vetro Pizza" loading="lazy" src="${STOCK.lasagne}"></figure>`;
+
+/* ================= reservation form -> SMS handoff ================= */
+const resForm = document.getElementById('resForm');
+const resConfirm = document.getElementById('resConfirm');
+resForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name = document.getElementById('rName').value.trim();
+  const phone = document.getElementById('rPhone').value.trim();
+  const date = document.getElementById('rDate').value;
+  const time = document.getElementById('rTime').value;
+  const guests = document.getElementById('rGuests').value;
+  const msg = `Bordbestilling Vetro Pizza: ${name}, ${guests}, ${date} kl. ${time}. Ring meg på ${phone}.`;
+  const smsUrl = `sms:+47xxxxxxxxx?&body=${encodeURIComponent(msg)}`;
+  resConfirm.classList.add('show');
+  window.location.href = smsUrl;
+});
+
+/* ================= FULL MENU DATA (uendret fra eksisterende side) ================= */
+const catIcons = {
+  pizza: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2 2 20h20L12 2Z"/><circle cx="12" cy="14" r="1"/><circle cx="9" cy="17" r="1"/><circle cx="15" cy="17" r="1"/></svg>`,
+  calzone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12a9 9 0 0 1 18 0z"/><path d="M3 12h18"/></svg>`,
+  antipasti: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>`,
+  panini: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="9" width="18" height="6" rx="3"/></svg>`,
+  pasta: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6c4 0 4 4 8 4s4-4 8-4M4 12c4 0 4 4 8 4s4-4 8-4M4 18c4 0 4 4 8 4"/></svg>`,
+  salat: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20c0-9 6-16 16-16-1 10-7 16-16 16Z"/></svg>`,
+  wrap: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3c8 0 12 4 12 9s-4 9-12 9"/></svg>`,
+  barn: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>`,
+  dessert: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 10h16l-2 10H6L4 10Z"/><path d="M8 10c0-3 1.8-6 4-6s4 3 4 6"/></svg>`,
+  drikke: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2h8l-1 6a3 3 0 0 1-6 0L8 2Z"/><path d="M12 12v10M8 22h8"/></svg>`,
+};
+
+const menuData = {
+  pizza: {
+    label: 'Pizza', icon:catIcons.pizza, note: 'Priser: 20 cm / 30 cm / 40 cm. Tillegg: Extra ost 39,- · Kjøtt 39,- · Glutenfri 49,-.', multi:true,
+    items: [
+      {n:1, name:'Margherita', tags:'2,4,8,10', ingr:'Tomatsaus, ost og basilikum', price:[69,110,169]},
+      {n:2, name:'Pepperoni', tags:'2,4,8,10', ingr:'Tomatsaus, ost og pepperoni', price:[79,159,179]},
+      {n:3, name:'Prosciutto', tags:'2,4,8,10', ingr:'Tomatsaus, ost og skinke', price:[79,159,179]},
+      {n:4, name:'Capricciosa', tags:'2,4,8,10', ingr:'Tomatsaus, ost, skinke og champignon', price:[null,169,199]},
+      {n:5, name:'Hawaii', tags:'2,4,8,10', ingr:'Tomatsaus, ost, skinke og ananas', price:[null,169,199]},
+      {n:6, name:'Kylling Diavlo', tags:'2,4,8,10', ingr:'Tomatsaus, ost, kyllingfilet, paprika, champignon, jalapeño og chilikrydder', price:[null,179,240]},
+      {n:7, name:'Napoletana', tags:'2,4,8,10', ingr:'Tomatsaus, ost, pepperoni, beef og skinke', price:[null,179,240]},
+      {n:8, name:'Quattro Formaggi', tags:'2,4,8,10', ingr:'Tomatsaus og 4 forskjellige oster', price:[null,179,240]},
+      {n:9, name:'Pizza Pollo Bianca', tags:'2,4,8,10', ingr:'Hvit saus, ost, champignon, løk, kyllingfilet og chili', price:[null,179,240]},
+      {n:10, name:'Pizza Bacon Bianca', tags:'2,4,8,10', ingr:'Hvit saus, ost, champignon, løk, bacon og fetaost', price:[null,179,240]},
+      {n:11, name:'BBQ Kylling', tags:'2,4,8,10', ingr:'BBQ-saus, ost, mais, løk, kyllingfilet og cheddar', price:[null,189,249]},
+      {n:12, name:'BBQ Beef', tags:'2,4,8,10', ingr:'BBQ-saus, ost, beef, løk, skinke og cheddar', price:[null,189,249]},
+      {n:13, name:'Pizza Caprese', tags:'2,4,8,10', ingr:'Tomatsaus, ost, fersk tomat, mozzarella, fersk basilikum og aceto balsamico crema', price:[null,189,249]},
+      {n:14, name:'Kebab Pizza', tags:'2,4,8,10', ingr:'Tomatsaus, ost, kebab, mais, løk og kebabsaus', price:[null,189,259]},
+      {n:15, name:'Pizza Burrata', tags:'2,4,8,10', ingr:'Tomatsaus, ost, ruccula, burrata og aceto balsamico crema', price:[null,199,279]},
+      {n:16, name:'Vegetar Pizza', tags:'2,4,8,10', ingr:'Tomatsaus, ost og mix grønnsaker', price:[null,179,239]},
+      {n:17, name:'Vetro Parma', tags:'2,4,8,10', ingr:'Tomatsaus, ost, ruccula, parmaskinke, parmesan og aceto balsamico crema', price:[null,179,269]},
+      {n:18, name:'Completa', tags:'2,4,8,10', ingr:'Tomatsaus, ost, beef, pepperoni, skinke, løk og bacon', price:[null,189,249]},
+      {n:19, name:'Kylling Bearnaise', tags:'2,4,8,10', ingr:'Tomatsaus, ost, kyllingfilet, mais, løk og bearnaisesaus', price:[null,189,249]},
+      {n:20, name:'Beef Bearnaise', tags:'2,4,8,10', ingr:'Tomatsaus, ost, beef, sopp, løk og bearnaisesaus', price:[null,189,249]},
+      {n:21, name:'Nutella Pizza', tags:'', ingr:'Nutella sjokolade og blandet frukt', price:[null,159,199]},
+    ]
+  },
+  calzone: {
+    label:'Calzone', icon:catIcons.calzone, note:'Innbakt pizza.',
+    items:[
+      {n:22, name:'Calzone Nr. 1', tags:'2,4,8,10', ingr:'Skinke og champignon', price:169},
+      {n:23, name:'Calzone Nr. 2', tags:'2,4,8,10', ingr:'Champignon, salami og jalapeño', price:169},
+    ]
+  },
+  antipasti: {
+    label:'Antipasti', icon:catIcons.antipasti,
+    items:[
+      {n:24, name:'Antipasti Misti', tags:'2,4,8,10', ingr:'Ost, skinke, salami, oliven, tomat, mozzarella og brød', price:249},
+      {n:25, name:'Focaccia', tags:'2,4,8,10', ingr:'', price:79},
+      {n:26, name:'Bruschetta', tags:'2,4,8,10', ingr:'6 stk.', price:149},
+      {n:27, name:'Burrata La Rosa', tags:'', ingr:'Burrata, cherrytomater, oliven, ruccula og brød', price:199},
+    ]
+  },
+  panini:{
+    label:'Panini', icon:catIcons.panini,
+    items:[
+      {n:28, name:'Skinke Panini', tags:'2,4,8,10', ingr:'Skinke og ost', price:79},
+      {n:29, name:'Diavlo Panini', tags:'2,4,8,10', ingr:'Salami og ost', price:79},
+      {n:30, name:'Vetro Panini', tags:'2,4,8,10', ingr:'Pepperoni og fetaost', price:99},
+      {n:31, name:'Vanlig Panini', tags:'2,4,8,10', ingr:'6 stk.', price:59},
+    ]
+  },
+  pasta:{
+    label:'Pasta & Lasagne', icon:catIcons.pasta, note:'Alle nudler fra Forno. Serveres med 4 stk. brød.',
+    items:[
+      {n:32, name:'Lasagne al Forno', tags:'', ingr:'Klassisk kjøttlasagne', price:199},
+      {n:33, name:'Pasta Combinazione', tags:'', ingr:'Husets kombinasjon', price:199},
+      {n:34, name:'Penne al Pollo', tags:'', ingr:'Kyllingfilet, champignon, mais, tomat-fløtesaus og ost', price:199},
+      {n:35, name:'Penne Completa Meat', tags:'', ingr:'Beef, bacon, paprika, tomat-fløtesaus og ost', price:199},
+      {n:36, name:'Penne Bearnaise Pollo', tags:'', ingr:'Kyllingfilet, mais, paprika, champignon, bearnaisesaus og ost', price:199},
+      {n:37, name:'Penne Kebab', tags:'', ingr:'Kebab, paprika, mais, kebab-fløtesaus og ost', price:199},
+      {n:38, name:'Penne Quattro Formaggi', tags:'', ingr:'4 forskjellige oster og fløtesaus', price:199},
+    ]
+  },
+  salat:{
+    label:'Salat', icon:catIcons.salat, note:'Serveres med dressing og 4 stk. brød.',
+    items:[
+      {n:39, name:'Salat Capricciosa', tags:'2,4,8,10', ingr:'Salat, tomat, agurk, mais, løk, fetaost og oliven', price:159},
+      {n:40, name:'Salat Pollo', tags:'2,4,8,10', ingr:'Salat, tomat, agurk, kyllingfilet og mais', price:179},
+      {n:41, name:'Salat Kebab', tags:'2,4,8,10', ingr:'Salat, tomat, agurk, kebab, mais og løk', price:179},
+      {n:42, name:'Caprese Salat', tags:'2,4,8,10', ingr:'Salat, tomat, mozzarella og aceto balsamico crema', price:179},
+    ]
+  },
+  wrap:{
+    label:'Baguette / Wrap', icon:catIcons.wrap, note:'Med hjemmelaget dressing.',
+    items:[
+      {n:43, name:'Milano', tags:'2,4,8,10', ingr:'Salat, skinke, cheddar og agurk', price:79},
+      {n:44, name:'Pollo', tags:'2,4,8,10', ingr:'Salat, kyllingfilet, mais, løk og agurk', price:99},
+      {n:45, name:'Kebab', tags:'2,4,8,10', ingr:'Salat, kebab, løk, mais og agurk', price:99},
+    ]
+  },
+  barn:{
+    label:'Barnemeny', icon:catIcons.barn, note:'Tomatsaus, ost, skinke/pepperoni.',
+    items:[
+      {n:46, name:'Mickey Mouse Pizza', tags:'2,4,8,10', ingr:'', price:99},
+      {n:47, name:'Hjerte Pizza', tags:'2,4,8,10', ingr:'', price:99},
+      {n:48, name:'Pommes Frites', tags:'', ingr:'', price:59},
+      {n:49, name:'Nuggets', tags:'', ingr:'6 stk.', price:79},
+      {n:50, name:'Kylling Wings', tags:'', ingr:'6 stk.', price:79},
+    ]
+  },
+  dessert:{
+    label:'Dessert', icon:catIcons.dessert,
+    items:[
+      {n:51, name:'Tiramisu', tags:'', ingr:'', price:120},
+      {n:52, name:'Sjokolade Stick', tags:'', ingr:'', price:99},
+    ]
+  },
+  drikke:{
+    label:'Drikke', icon:catIcons.drikke,
+    items:[
+      {n:'', name:'Brus 0,5 l', tags:'', ingr:'', price:32},
+      {n:'', name:'Brus 1,5 l', tags:'', ingr:'', price:57},
+    ]
+  }
+};
+
+const tabBar = document.getElementById('tabBar');
+const menuList = document.getElementById('menuList');
+const menuNote = document.getElementById('menuNote');
+const menuTitle = document.getElementById('menuTitle');
+const keys = Object.keys(menuData);
+
+tabBar.innerHTML = keys.map((k,i) => `<button class="tab-btn ${i===0?'active':''}" data-key="${k}">${menuData[k].icon}${menuData[k].label}</button>`).join('');
+
+function renderMenu(key){
+  const cat = menuData[key];
+  menuTitle.textContent = cat.label;
+  menuNote.textContent = cat.note || '';
+  if(cat.multi){
+    menuList.innerHTML = `
+      <div class="price-head">
+        <div></div><div></div>
+        <div class="p-multi"><span>20 cm</span><span>30 cm</span><span>40 cm</span></div>
+      </div>
+    ` + cat.items.map(item => `
+      <div class="menu-row">
+        <div class="idx">${String(item.n).padStart(2,'0')}</div>
+        <div>
+          <div class="name">${item.name}${item.tags ? `<span class="tags">(${item.tags})</span>`:''}</div>
+          <div class="ingr">${item.ingr}</div>
+        </div>
+        <div class="price">
+          <div class="p-multi">
+            <span>${item.price[0] ? item.price[0]+',-' : '—'}</span>
+            <span>${item.price[1] ? item.price[1]+',-' : '—'}</span>
+            <span>${item.price[2] ? item.price[2]+',-' : '—'}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  } else {
+    menuList.innerHTML = cat.items.map(item => `
+      <div class="menu-row">
+        <div class="idx">${item.n ? String(item.n).padStart(2,'0') : '—'}</div>
+        <div>
+          <div class="name">${item.name}${item.tags ? `<span class="tags">(${item.tags})</span>`:''}</div>
+          ${item.ingr ? `<div class="ingr">${item.ingr}</div>` : ''}
+        </div>
+        <div class="price">${item.price},-</div>
+      </div>
+    `).join('');
+  }
+}
+renderMenu(keys[0]);
+
+tabBar.addEventListener('click', (e) => {
+  const btn = e.target.closest('.tab-btn');
+  if(!btn) return;
+  tabBar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenu(btn.dataset.key);
+  document.getElementById('meny').scrollIntoView({behavior:'smooth', block:'start'});
+});
+</script>
+</body>
+</html>
