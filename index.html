@@ -21,7 +21,7 @@
   "name": "Vetro Pizza",
   "servesCuisine": ["Italian", "Pizza"],
   "priceRange": "$$",
-  "telephone": "+47 xxx xx xxx",
+  "telephone": "+47 12 34 56 73",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Kirkeveien 22, 0264 Oslo",
@@ -423,7 +423,7 @@
   <a href="#historie">Om oss</a>
   <a href="#atmosfare">Atmosfære</a>
   <a href="#bestill">Bestill bord</a>
-  <a href="tel:+47xxxxxxxxx" class="tel">+47 xxx xx xxx — ring oss</a>
+  <a href="tel:+4712345673" class="tel">+47 12 34 56 73 — ring oss</a>
 </div>
 
 <div id="top"></div>
@@ -455,7 +455,7 @@
       </div>
       <div class="item">
         <div class="eyebrow">Ring oss</div>
-        <p><a href="tel:+47xxxxxxxxx">+47 xxx xx xxx</a></p>
+        <p><a href="tel:+4712345673">+47 12 34 56 73</a></p>
       </div>
     </div>
   </div>
@@ -591,15 +591,15 @@
         </div>
         <div class="actions">
           <button type="submit" class="btn btn-solid on-dark">Bestill bord</button>
-          <a href="tel:+47xxxxxxxxx" class="btn btn-outline on-dark">Ring oss</a>
+          <a href="tel:+4712345673" class="btn btn-outline on-dark">Ring oss</a>
         </div>
-        <p class="res-note">Sender en bestillingsforespørsel på SMS til +47 xxx xx xxx — vi bekrefter bordet på telefon.</p>
+        <p class="res-note">Sender en bestillingsforespørsel på SMS til +47 12 34 56 73 — vi bekrefter bordet på telefon.</p>
         <p class="res-confirm" id="resConfirm">Forespørselen er klar i meldings-appen din. Send den, så ringer vi tilbake for å bekrefte bordet.</p>
       </form>
       <div class="reveal">
         <div class="info-rows">
           <div class="row"><div class="k">Adresse</div><div class="v">Kirkeveien 22, 0264 Oslo</div></div>
-          <div class="row"><div class="k">Telefon</div><div class="v">+47 xxx xx xxx</div></div>
+          <div class="row"><div class="k">Telefon</div><div class="v">+47 12 34 56 73</div></div>
           <div class="row"><div class="k">Man–Fre</div><div class="v">11.00 – 22.00</div></div>
           <div class="row"><div class="k">Lør–Søn</div><div class="v">12.00 – 22.00</div></div>
         </div>
@@ -626,7 +626,7 @@
       <div class="footer-links">
         <div class="col">
           <div class="eyebrow">Kontakt</div>
-          <a href="tel:+47xxxxxxxxx">+47 xxx xx xxx</a>
+          <a href="tel:+4712345673">+47 12 34 56 73</a>
           <p>Kirkeveien 22, 0264 Oslo</p>
         </div>
         <div class="col">
@@ -651,7 +651,7 @@
 
 <div class="mobile-bar">
   <a href="#bestill" class="primary">Bestill bord</a>
-  <a href="tel:+47xxxxxxxxx" class="secondary">Ring oss</a>
+  <a href="tel:+4712345673" class="secondary">Ring oss</a>
 </div>
 
 <script>
@@ -759,7 +759,7 @@ resForm.addEventListener('submit', (e) => {
   const time = document.getElementById('rTime').value;
   const guests = document.getElementById('rGuests').value;
   const msg = `Bordbestilling Vetro Pizza: ${name}, ${guests}, ${date} kl. ${time}. Ring meg på ${phone}.`;
-  const smsUrl = `sms:+47xxxxxxxxx?&body=${encodeURIComponent(msg)}`;
+  const smsUrl = `sms:+4712345673?&body=${encodeURIComponent(msg)}`;
   resConfirm.classList.add('show');
   window.location.href = smsUrl;
 });
